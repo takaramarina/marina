@@ -16,7 +16,7 @@
         font-size: 60px;
 /*         padding-top: 60px; */
         position: relative;
-        bottom: 500px;
+        top: -450px;
         animation-name: slide;
         animation-duration: 4s;
         animation-timing-function: ease-out;
@@ -43,6 +43,7 @@
       }
       body {
         text-align: center;
+        align-items: center;
         font-family: "Trebuchet MS", sans-serif;
       }
 
@@ -69,7 +70,6 @@
     </style>
   </head>
   <body>
-
 
     <div class="sec-HomepageHero"></div>
     <h1>
@@ -162,7 +162,7 @@
         renderer = new THREE.WebGLRenderer();
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(anchor.offsetWidth, anchor.offsetHeight);
-        renderer.setSize(600, 700);
+        renderer.setSize(anchor.offsetWidth, anchor.offsetHeight);
         container.appendChild(renderer.domElement);
 
         anchor.addEventListener('mousemove', onDocumentMouseMove, false);
