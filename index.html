@@ -39,6 +39,8 @@ so far!-->
 
       .headers {
         color: white;
+        background-color: black;
+        width: 20px;
         font-size: 40px;
         position: relative;
         top: -300px;
@@ -166,14 +168,13 @@ so far!-->
         }
 
         renderer = new THREE.WebGLRenderer();
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(anchor.offsetWidth, anchor.offsetHeight);
-        renderer.setSize(anchor.offsetWidth, anchor.offsetHeight);
-        container.appendChild(renderer.domElement);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(anchor.offsetWidth, anchor.offsetHeight);
+    container.appendChild(renderer.domElement);
 
-        anchor.addEventListener('mousemove', onDocumentMouseMove, false);
-        anchor.addEventListener('touchstart', onDocumentTouchStart, false);
-        anchor.addEventListener('touchmove', onDocumentTouchMove, false);
+    anchor.addEventListener('mousemove', onDocumentMouseMove, false);
+    anchor.addEventListener('touchstart', onDocumentTouchStart, false);
+    anchor.addEventListener('touchmove', onDocumentTouchMove, false);
 
         //
 
@@ -195,8 +196,8 @@ so far!-->
 
       function onDocumentMouseMove(event) {
 
-        mouseX = (event.clientX - windowHalfX) / 2;
-        mouseY = (event.clientY - windowHalfY) / 2;
+        mouseX = (event.clientX - windowHalfX);
+        mouseY = (event.clientY - windowHalfY);
 
       }
 
