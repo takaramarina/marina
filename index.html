@@ -11,7 +11,6 @@ margin on the righthand side for some reason,
 but I wanted to show you what I have
 so far!-->
 
-
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -25,27 +24,27 @@ so far!-->
         margin: auto;
         padding-top: 50px;
       }
-
+      
       h1 {
         font-size: 60px;
-        /*         padding-top: 60px; */
+/*         padding-top: 60px; */
         position: relative;
-        top: -450px;
-        width: 500px;
+        bottom: 500px;
         animation-name: slide;
         animation-duration: 4s;
         animation-timing-function: ease-out;
         animation-fill-mode: forwards;
+        width: 400px;
+        background-color: rgba(0, 0, 0, 0.49);
       }
-
+      
       .headers {
         color: white;
-        background-color: black;
-        width: 20px;
         font-size: 40px;
         position: relative;
-        top: -300px;
+        bottom: 300px;
         left: 30%;
+        width: 100px;
         /*         font-family: "Courier", sans-serif; */
         text-align: start;
       }
@@ -58,11 +57,16 @@ so far!-->
       a:hover {
         text-decoration: underline;
       }
-
       body {
         text-align: center;
-        align-items: center;
         font-family: "Trebuchet MS", sans-serif;
+      }
+
+      img {
+        width: 400px;
+        position: absolute;
+        top: 100px;
+        left: 30%;
       }
 
       @keyframes slide {
@@ -73,12 +77,15 @@ so far!-->
 
         100% {
           color: white;
-          right: -10%;
+          right: -30%;
         }
       }
+
+      
     </style>
   </head>
   <body>
+
 
     <div class="sec-HomepageHero"></div>
     <h1>
@@ -169,13 +176,14 @@ so far!-->
         }
 
         renderer = new THREE.WebGLRenderer();
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(anchor.offsetWidth, anchor.offsetHeight);
-    container.appendChild(renderer.domElement);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        // renderer.setSize(anchor.offsetWidth, anchor.offsetHeight);
+        renderer.setSize(600, 700);
+        container.appendChild(renderer.domElement);
 
-    anchor.addEventListener('mousemove', onDocumentMouseMove, false);
-    anchor.addEventListener('touchstart', onDocumentTouchStart, false);
-    anchor.addEventListener('touchmove', onDocumentTouchMove, false);
+        anchor.addEventListener('mousemove', onDocumentMouseMove, false);
+        anchor.addEventListener('touchstart', onDocumentTouchStart, false);
+        anchor.addEventListener('touchmove', onDocumentTouchMove, false);
 
         //
 
