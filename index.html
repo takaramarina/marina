@@ -4,19 +4,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Marina Takara</title>
-
     <style>
+      .sec-HomepageHero {
+        width: 70%;
+        height: 70%;
+        margin: auto;
+        padding-top: 50px;
+      }
+      
       h1 {
         font-size: 60px;
-        padding-top: 60px;
-        position: absolute;
-        top: 10px;
+/*         padding-top: 60px; */
+        position: relative;
+        bottom: 500px;
         animation-name: slide;
         animation-duration: 4s;
         animation-timing-function: ease-out;
         animation-fill-mode: forwards;
       }
+      
+      .headers {
+        color: white;
+        font-size: 40px;
+        position: relative;
+        bottom: 300px;
+        left: 30%;
+        /*         font-family: "Courier", sans-serif; */
+        text-align: start;
+      }
 
+      a {
+        color: white;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
       body {
         text-align: center;
         font-family: "Trebuchet MS", sans-serif;
@@ -31,38 +55,23 @@
 
       @keyframes slide {
         0% {
-          color: white;
-          left: -30%;
+          color: black;
+          right: 30%;
         }
 
         100% {
-          color: black;
-          left: 50%;
+          color: white;
+          right: -10%;
         }
       }
 
-      .headers {
-        color: white;
-        font-size: 40px;
-        position: absolute;
-        top: 500px;
-        left: 30%;
-/*         font-family: "Courier", sans-serif; */
-        text-align: start;
-      }
-
-      a {
-        color: white;
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
+      
     </style>
   </head>
   <body>
-    <img src="lp.jpg" alt="painting">
+
+
+    <div class="sec-HomepageHero"></div>
     <h1>
       Marina Takara
     </h1>
@@ -72,5 +81,190 @@
       <a href="https://takaramarina.github.io/contact/">contact</a>
       <br>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r81/three.min.js"></script>
+    <script>
+      var anchor = document.querySelector('.sec-HomepageHero')
+
+      var container;
+      var camera, scene, renderer, particles, geometry, materials = [],
+        parameters, i, h, color, size;
+      var mouseX = 0,
+        mouseY = 0;
+
+      var windowHalfX = window.innerWidth / 2;
+      var windowHalfY = window.innerHeight / 2;
+
+      if (anchor) {
+        init();
+        animate();
+      }
+
+      function init() {
+
+        container = document.createElement('div');
+        container.className = 'sec-HomepageHero_Canvas'
+        anchor.appendChild(container);
+
+        camera = new THREE.PerspectiveCamera(75, anchor.offsetWidth / anchor.offsetHeight, 1, 3000);
+        camera.position.z = 1000;
+
+        scene = new THREE.Scene();
+        // scene.background = new THREE.Color();
+        scene.fog = new THREE.FogExp2(0x000000, 0.0007);
+
+        geometry = new THREE.Geometry();
+
+        for (i = 0; i < 5000; i++) {
+
+          var vertex = new THREE.Vector3();
+          vertex.x = Math.random() * 2000 - 1000;
+          vertex.y = Math.random() * 2000 - 1000;
+          vertex.z = Math.random() * 2000 - 1000;
+
+          geometry.vertices.push(vertex);
+
+        }
+
+        parameters = [
+          [
+            [0.95, 1, 0.3], 400
+          ],
+          [
+            [0.90, 1, 0.4], 30
+          ],
+          [
+            [0.85, 1, 0.3], 20
+          ],
+          [
+            [0.80, 1, 0.3], 10
+          ]
+        ];
+
+        for (i = 0; i < parameters.length; i++) {
+
+          color = parameters[i][0];
+          size = parameters[i][1];
+
+          materials[i] = new THREE.PointsMaterial({
+            size: size
+          });
+
+          particles = new THREE.Points(geometry, materials[i]);
+
+          particles.rotation.x = Math.random() * 6;
+          particles.rotation.y = Math.random() * 6;
+          particles.rotation.z = Math.random() * 6;
+
+          scene.add(particles);
+
+        }
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setPixelRatio(window.devicePixelRatio);
+        // renderer.setSize(anchor.offsetWidth, anchor.offsetHeight);
+        renderer.setSize(600, 700);
+        container.appendChild(renderer.domElement);
+
+        anchor.addEventListener('mousemove', onDocumentMouseMove, false);
+        anchor.addEventListener('touchstart', onDocumentTouchStart, false);
+        anchor.addEventListener('touchmove', onDocumentTouchMove, false);
+
+        //
+
+        window.addEventListener('resize', onWindowResize, false);
+
+      }
+
+      function onWindowResize() {
+
+        windowHalfX = anchor.offsetWidth / 2;
+        windowHalfY = anchor.offsetHeight / 2;
+
+        camera.aspect = anchor.offsetWidth / anchor.offsetHeight;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(anchor.offsetWidth, anchor.offsetHeight);
+
+      }
+
+      function onDocumentMouseMove(event) {
+
+        mouseX = (event.clientX - windowHalfX) / 4;
+        mouseY = (event.clientY - windowHalfY) / 4;
+
+      }
+
+      function onDocumentTouchStart(event) {
+
+        if (event.touches.length === 1) {
+
+          event.preventDefault();
+
+          mouseX = event.touches[0].pageX - windowHalfX;
+          mouseY = event.touches[0].pageY - windowHalfY;
+
+        }
+
+      }
+
+      function onDocumentTouchMove(event) {
+
+        if (event.touches.length === 1) {
+
+          event.preventDefault();
+
+          mouseX = event.touches[0].pageX - windowHalfX;
+          mouseY = event.touches[0].pageY - windowHalfY;
+
+        }
+
+      }
+
+      //
+
+      function animate() {
+
+
+        requestAnimationFrame(animate);
+
+        render();
+
+      }
+
+      function render() {
+
+        var time = Date.now() * 0.00005;
+
+        camera.position.x += (mouseX - camera.position.x) * 0.05;
+        camera.position.y += (-mouseY - camera.position.y) * 0.05;
+
+        camera.lookAt(scene.position);
+
+        for (i = 0; i < scene.children.length; i++) {
+
+          var object = scene.children[i];
+
+          if (object instanceof THREE.Points) {
+
+            object.rotation.y = time * (i < 4 ? i + 1 : -(i + 1));
+
+          }
+
+        }
+
+        for (i = 0; i < materials.length; i++) {
+
+          color = parameters[i][0];
+
+          // Divide by 360 == 0 - 1. Divide by 3600 == 0 - 0.1
+          h = (360 * (color[0] + time) % 360) / 360;
+          materials[i].color.setHSL(h, color[1], color[2]);
+
+        }
+
+        renderer.render(scene, camera);
+
+      }
+    </script>
   </body>
 </html>
