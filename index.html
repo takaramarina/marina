@@ -30,24 +30,25 @@ so far!-->
       h1 {
         font-size: 70px;
 /*         padding-top: 60px; */
-        position: absolute;
-        bottom: 500px;
+        position: relative;
+        top: -350px;
         margin: auto;
         animation-name: slide;
         animation-duration: 4s;
         animation-timing-function: ease-out;
         animation-fill-mode: forwards;
         width: 600px;
-        background-color: rgba(0, 0, 0, 0.49);
+/*         background-color: rgba(0, 0, 0, 0.49); */
         border-radius: 5px;
       }
       
       .headers {
         color: white;
         font-size: 40px;
-        position: absolute;
-        bottom: 200px;
-        left: 30%;
+        position: relative;
+        bottom: 300px;
+        margin: auto;
+        padding-left: 30px;
         width: 100px;
         /*         font-family: "Courier", sans-serif; */
         text-align: start;
@@ -63,6 +64,7 @@ so far!-->
       }
       body {
         text-align: center;
+        align-items: center;
         font-family: "Poppins", sans-serif;
       }
 
@@ -73,7 +75,6 @@ so far!-->
 
         100% {
           color: white;
-          transform: translate(50px);
         }
       }
     </style>
