@@ -21,7 +21,7 @@
       }
 
       h1 {
-        font-size: 40px;
+        font-size: 11vw;
         position: fixed;
         top: 140px;
         color: white;
@@ -33,13 +33,15 @@
       
       @keyframes down {
         to {
-          transform: rotate(-90deg) translateY(-150px);
+          transform: rotate(-90deg) translateY(-150px) translateX(-10px);
+          font-size: 35px;
         }
       }
 
       .headers {
         color: white;
-        font-size: 30px;
+        opacity: 0;
+        font-size: 24px;
         position: fixed;
         top: 400px;
         margin: auto;
@@ -50,13 +52,28 @@
         animation-fill-mode: forwards;
         animation-play-state: paused;
         animation-delay: calc(var(--scroll) * -2s);
+        display: inline;
       }
       @keyframes up {
         to {
-          transform: translateY(-300px);
+          opacity: 1;
         }
       }
 
+      .a1 {
+        position: fixed;
+        margin-left: -20vw;
+        margin-top: -380px;
+      }
+      .a2 {
+        position: fixed;
+        margin-top: -380px;
+      }
+      .a3 {
+        position: fixed;
+        margin-left: 20vw;
+        margin-top: -380px;
+      }
       a {
         color: white;
         text-decoration: none;
@@ -83,7 +100,7 @@
           color: white;
         }
       }
-
+      
       .end {
         height: 300px;
         width: 80%;
@@ -113,9 +130,9 @@
     <div class="sec-HomepageHero"></div>
     <h1>MARINA TAKARA</h1>
     <div class="headers">
-      <a href="https://takaramarina.github.io/about/">about</a> &nbsp
-      <a href="https://takaramarina.github.io/works/">works</a> &nbsp
-      <a href="https://takaramarina.github.io/contact/">contact</a>
+      <a href="https://takaramarina.github.io/about/" class="a1">about</a>
+      <a href="https://takaramarina.github.io/works/" class="a2">works</a>
+      <a href="https://takaramarina.github.io/contact/" class="a3">contact</a>
       <br>
     </div>
     <div class="end">
@@ -211,7 +228,7 @@
           renderer = new THREE.WebGLRenderer();
           renderer.setPixelRatio(window.devicePixelRatio);
           renderer.setSize(anchor.offsetWidth, anchor.offsetHeight);
-          renderer.setSize(600, 500);
+          //renderer.setSize(600, 500);
           container.appendChild(renderer.domElement);
 
           anchor.addEventListener('mousemove', onDocumentMouseMove, false);
