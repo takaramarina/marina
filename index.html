@@ -362,7 +362,7 @@
           renderer = new THREE.WebGLRenderer();
           renderer.setPixelRatio(window.devicePixelRatio);
           renderer.setSize(anchor.offsetWidth, anchor.offsetHeight);
-          //renderer.setSize(600, 500);
+          renderer.setSize(window.innerWidth, window.innerHeight);
           container.appendChild(renderer.domElement);
 
           anchor.addEventListener('mousemove', onDocumentMouseMove, false);
