@@ -25,16 +25,25 @@
         position: fixed;
         top: 140px;
         color: white;
-        animation: down 1s linear;
+        opacity: 0;
+        animation: down, fade;
+        animation-duration: 1s;
+        animation-timing-function: linear;
         animation-fill-mode: forwards;
-        animation-play-state: paused;
-        animation-delay: calc(var(--scroll) * -2s);
+        animation-play-state: paused, running;
+        animation-delay: calc(var(--scroll) * -2s), 0s;
       }
-      
+
       @keyframes down {
         to {
           transform: rotate(-90deg) translateY(-150px) translateX(-10px);
           font-size: 35px;
+        }
+      }
+
+      @keyframes fade {
+        to {
+          opacity: 1;
         }
       }
 
@@ -54,6 +63,7 @@
         animation-delay: calc(var(--scroll) * -2s);
         display: inline;
       }
+
       @keyframes up {
         to {
           opacity: 1;
@@ -65,15 +75,18 @@
         margin-left: -20vw;
         margin-top: -380px;
       }
+
       .a2 {
         position: fixed;
         margin-top: -380px;
       }
+
       .a3 {
         position: fixed;
         margin-left: 20vw;
         margin-top: -380px;
       }
+
       a {
         color: white;
         text-decoration: none;
@@ -100,7 +113,7 @@
           color: white;
         }
       }
-      
+
       .end {
         height: 300px;
         width: 80%;
